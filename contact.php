@@ -1,5 +1,24 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $to = "Hassanmhamad777@gmail.com"; // Enter your email address here
+    $from_name = $_POST['name'];
+    $from_email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+    
+    $headers = "From: $from_name <$from_email>" . "\r\n" .
+               "Reply-To: $from_email" . "\r\n" .
+               "MIME-Version: 1.0" . "\r\n" .
+               "Content-type: text/html; charset=UTF-8" . "\r\n";
 
+    if (mail($to, $subject, $message, $headers)) {
+        echo "success";
+    } else {
+        echo "error";
+    }
+}
+
+/*
 class ContactFormHandler {
     public $to;
     public $from_name;
@@ -72,5 +91,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Form not submitted, redirect to error page or display an error message
     echo "Form submission method not allowed.";
 }
+*/
 ?>
 
