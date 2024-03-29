@@ -26,6 +26,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <script src="https://www.google.com/recaptcha/api.js"></script>
 
   <!-- =======================================================
   * Template Name: iPortfolio
@@ -620,9 +621,9 @@
               <div class="testimonial-item" data-aos="fade-up">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  I've had the pleasure of working with Mohamad Hassan on several key projects at Al Ahmar Marketing Hub, and I cannot recommend him enough. As both a video editor and photographer, Mohamad has an exceptional eye for detail, blending creativity with precision to bring our concepts to life. His dedication is unparalleled; he not only meets deadlines but often delivers ahead of schedule, ensuring there's ample time for any final adjustments. Mohamad's commitment to quality and his professional work ethic make him a standout freelancer. He's truly an asset to any team, and I look forward to collaborating on more successful projects together.                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  I've had the pleasure of collaborating with Mohamad Ali on multiple projects at Al Ahmar Marketing Hub, and I highly recommend him. Mohamad is a talented video editor and photographer with a keen eye for detail and a knack for creativity. His dedication to quality and professionalism make him a valuable freelancer. I look forward to future collaborations with Mohamad.                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <img src="assets/img/testimonials/MohamadAhmar.jpg" class="testimonial-img" alt="">
                 <h3>Mohamad Al Ahmar</h3>
                 <h4>Ceo &amp; Founder</h4>
               </div>
@@ -724,33 +725,94 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
+<!-- HTML form -->
+<form method="post" action="https://formspree.io/f/mgegnyzv"  role="form" class="php-email-form">
+  <div class="row">
+      <div class="form-group col-md-6">
+          <label for="name">Your Name</label>
+          <input type="text" name="name" class="form-control" id="name" required>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="email">Your Email</label>
+          <input type="email" class="form-control" name="email" id="email" required>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="subject">Subject</label>
+      <input type="text" class="form-control" name="subject" id="subject" required>
+  </div>
+  <div class="form-group">
+      <label for="message">Message</label>
+      <textarea class="form-control" name="message" id="message" rows="10" required></textarea>
+  </div>
+  <div class="my-3">
+      <div class="loading">Loading</div>
+      <div class="error-message invisible"></div>
+      <div class="sent-message">Your message has been sent. Thank you!</div>
+  </div>
+  <!-- <div class="g-recaptcha" data-sitekey="6Lc7PagpAAAAALNBXuh0-3pCMyiqxnOwggfQM9jv"></div> -->
+  <div class="text-center"><button type="submit">Send Message</button></div>
+</form>
+
+<!-- Script to handle form submission -->
+<script>
+ const form = document.querySelector('.php-email-form');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    const formData = new FormData(form);
+    const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+
+    const jsonResponse = await response.json();
+    if (jsonResponse.ok) {
+        // Form submission was successful
+        // Display a user-friendly confirmation message
+        const sentMessage = document.querySelector('.sent-message');
+        sentMessage.style.display = 'block';
+        // Hide the old error message if it exists
+        const errorMessage = document.querySelector('.error-message');
+        if (errorMessage && errorMessage.style.display === 'block') {
+            errorMessage.style.display = 'none';
+        }
+        // Optionally, hide other messages
+        const loadingMessage = document.querySelector('.loading');
+        if (loadingMessage) {
+            loadingMessage.style.display = 'none';
+        }
+        // Reset the form
+        form.reset();
+    } else {
+        // Handle form submission error
+        const errorMessage = document.querySelector('.error-message');
+        errorMessage.textContent = 'An error occurred. Please try again later.';
+        errorMessage.style.display = 'block';
+        // Optionally, hide other messages
+        const loadingMessage = document.querySelector('.loading');
+        if (loadingMessage) {
+            loadingMessage.style.display = 'none';
+        }
+        const sentMessage = document.querySelector('.sent-message');
+        if (sentMessage && sentMessage.style.display === 'block') {
+            sentMessage.style.display = 'none';
+        }
+    }
+});
+
+
+</script>
+<style>
+  .invisible{
+    display: none;
+  }
+</style>
+        </div>
 
         </div>
 
