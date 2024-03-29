@@ -633,12 +633,11 @@
               <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  I needed someone who could bring my vision to life through video editing. Mohamad Ali exceeded my expectations. His attention to detail and creativity transformed my designs into stunning visual stories. I highly recommend him for any video editing needs.                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
+                <img src="assets/img/testimonials/MohamadBazzi.jpg" class="testimonial-img" alt="">
+                <h3>Mohamad Bazzi</h3>
+                <h4>Interior Designer</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -646,12 +645,11 @@
               <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  Mohamad Ali's video editing skills are exceptional. As a senior graphic designer, I appreciate his attention to detail and his ability to translate my concepts into engaging visual content. His professionalism and prompt delivery make him a reliable collaborator for any project.                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
+                <img src="assets/img/testimonials/LaraDoudar.jpg" class="testimonial-img" alt="">
+                <h3>Lara Doudar</h3>
+                <h4>Senior Graphic designer</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -659,16 +657,15 @@
               <div class="testimonial-item" data-aos="fade-up" data-aos-delay="300">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  Mohamad Ali's video editing expertise has greatly enhanced our marketing efforts. As a retail manager, I rely on his creativity and precision to showcase our products effectively. His quick turnaround and dedication to our vision make him a valued partner in our promotional campaigns.                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
+                <img src="assets/img/testimonials/user.jpg" class="testimonial-img" alt="">
+                <h3>loyal customer</h3>
+                <h4>Retail Manager</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
-            <div class="swiper-slide">
+            <!-- <div class="swiper-slide">
               <div class="testimonial-item" data-aos="fade-up" data-aos-delay="400">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -679,7 +676,7 @@
                 <h3>John Larson</h3>
                 <h4>Entrepreneur</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>End testimonial item -->
 
           </div>
           <div class="swiper-pagination"></div>
@@ -756,7 +753,8 @@
 
 <!-- Script to handle form submission -->
 <script>
- const form = document.querySelector('.php-email-form');
+const form = document.querySelector('.php-email-form');
+const successMessage = document.querySelector('.sent-message');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -774,13 +772,7 @@ form.addEventListener('submit', async (e) => {
     if (jsonResponse.ok) {
         // Form submission was successful
         // Display a user-friendly confirmation message
-        const sentMessage = document.querySelector('.sent-message');
-        sentMessage.style.display = 'block';
-        // Hide the old error message if it exists
-        const errorMessage = document.querySelector('.error-message');
-        if (errorMessage && errorMessage.style.display === 'block') {
-            errorMessage.style.display = 'none';
-        }
+        successMessage.style.display = 'block';
         // Optionally, hide other messages
         const loadingMessage = document.querySelector('.loading');
         if (loadingMessage) {
@@ -788,6 +780,11 @@ form.addEventListener('submit', async (e) => {
         }
         // Reset the form
         form.reset();
+
+        // Hide the success message after 5 seconds (adjust as needed)
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 5000); // 5000 milliseconds = 5 seconds
     } else {
         // Handle form submission error
         const errorMessage = document.querySelector('.error-message');
@@ -798,9 +795,9 @@ form.addEventListener('submit', async (e) => {
         if (loadingMessage) {
             loadingMessage.style.display = 'none';
         }
-        const sentMessage = document.querySelector('.sent-message');
-        if (sentMessage && sentMessage.style.display === 'block') {
-            sentMessage.style.display = 'none';
+        // Hide the success message if it's currently displayed
+        if (successMessage.style.display === 'block') {
+            successMessage.style.display = 'none';
         }
     }
 });
