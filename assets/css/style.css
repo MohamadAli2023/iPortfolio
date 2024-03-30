@@ -244,6 +244,23 @@ h6 {
   background: url("../img/Mohamad2.jpg")  center;
   background-size: cover;
 }
+video {
+  max-width: 100%;
+  height: auto;
+}
+footer .container {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+footer .version {
+  font-size: 14px;
+  color: #888; /* Adjust color as needed */
+}
+
+
 
 #hero:before {
   content: "";
