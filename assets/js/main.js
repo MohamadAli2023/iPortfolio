@@ -290,7 +290,7 @@ const portfolioDetails = {
     category: "Social Media",
     client: "Crazy Nuts",
     projectDate: "August 18, 2023",
-    Country : "UAE",
+    Country : "Lebanon",
     images: [
       "assets/img/portfolio/Crazynuts2.JPG",
     ]
@@ -448,7 +448,7 @@ if (sampleDetails) {
     sampleDetails.video.forEach(video => {
       swiperWrapperElement.innerHTML += `
         <div class="swiper-slide">
-          <video class="img-fluid" loading="lazy" controls>
+          <video class="img-fluid" controls >
             <source src="${video}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
