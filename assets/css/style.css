@@ -252,7 +252,7 @@ h5{
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/Mohamad2.jpg")  center;
+  background: url("../img/pier-4k-ct.jpg")  center;
   background-size: cover;
 }
 video {
@@ -728,69 +728,101 @@ form{
 }
 
 /*--------------------------------------------------------------
-# Services
+# Services Section
 --------------------------------------------------------------*/
-/* ======= Services Section Enhancements ======= */
 
-/* Container Styles for Icon Boxes */
-.icon-box {
-  background: #f9f9f9; /* Light background for better contrast */
-  /* padding: 0px; */
+.services {
+  padding: 60px 0;
+  background: #fff;
+}
+
+.section-title {
+  /* text-align: center; */
+  /* margin-bottom: 40px; */
+  position: relative;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  font-size: 16px;
+  color: #666;
+  margin: 0 auto;
+}
+
+/* Services container with flex and controlled gap */
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px; /* Controls both horizontal and vertical space */
+}
+
+/* Service Item Styling */
+.service-item {
+  background: #f9f9f9;
   border-radius: 10px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adds a smooth animation */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 15px 0; /*Vertical spacing between rows*/
+  padding: 30px 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex: 1 1 300px;  /* Allows cards to grow/shrink with a minimum width */
+  max-width: 320px;
 }
 
-/* Add horizontal spacing between columns */
-@media (min-width: 768px) {
-  .icon-box {
-    margin: 15px 10px; /* Horizontal spacing on larger screens */
-  }
+/* Hover Effects */
+.service-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background: #fff;
 }
 
-/* Hover Effects for Services */
-.icon-box:hover {
-  transform: translateY(-10px); /* Subtle hover effect */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
-  background: #ffffff; /* Slightly brighter background on hover */
-}
-
-/* Icon Styling */
-.icon-box .icon {
-  font-size: 48px;
-  color: #149ddd; /* Blue accent for icons */
-  margin-bottom: 10px;
+/* Icon styling */
+.service-item .icon {
+  font-size: 50px;
+  color: #149ddd;
+  margin-bottom: 15px;
   transition: color 0.3s ease;
 }
 
-.icon-box:hover .icon {
-  color: #0f87c1; /* Darker blue on hover */
+.service-item:hover .icon {
+  color: #0f87c1;
 }
 
-/* Title Styling */
-.icon-box .title {
+/* Title styling */
+.service-item .title {
   font-size: 20px;
-  font-weight: bold;
-  color: #333333;
+  font-weight: 600;
   margin-bottom: 10px;
+  color: #333;
   transition: color 0.3s ease;
 }
 
-.icon-box:hover .title {
-  color: #149ddd; /* Highlight title on hover */
+.service-item:hover .title {
+  color: #149ddd;
 }
 
-/* Description Styling */
-.icon-box .description {
+/* Description styling */
+.service-item .description {
   font-size: 14px;
-  color: #666666;
-  transition: color 0.3s ease;
+  color: #666;
+  line-height: 1.5;
 }
 
-.icon-box:hover .description {
-  color: #333333; /* Darker text on hover */
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .services-container {
+    gap: 20px;
+  }
+  .service-item {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -984,6 +1016,13 @@ input{
   padding-bottom: 8px;
 }
 
+/* General Enhancements */
+.my-3 {
+  position: relative;
+  margin-top: 15px;
+}
+
+/* Validation Text Styling */
 .contact .php-email-form .validate {
   display: none;
   color: red;
@@ -992,35 +1031,19 @@ input{
   font-size: 13px;
 }
 
-.contact .php-email-form .error-message {
-  display: none;
-  color: #fff;
-  background: #ed3c0d;
-  text-align: left;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .error-message br+br {
-  margin-top: 25px;
-}
-
-.contact .php-email-form .sent-message {
-  display: none;
-  color: #fff;
-  background: #18d26e;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-}
-
+/* Loading Message Styling */
 .contact .php-email-form .loading {
   display: none;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
   text-align: center;
   padding: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Animated Loading Spinner */
 .contact .php-email-form .loading:before {
   content: "";
   display: inline-block;
@@ -1028,10 +1051,64 @@ input{
   width: 24px;
   height: 24px;
   margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
-  border-top-color: #eee;
+  border: 3px solid #149ddd; /* Primary color */
+  border-top-color: transparent;
   animation: animate-loading 1s linear infinite;
 }
+
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error Message Styling */
+.contact .php-email-form .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d; /* Vibrant red for errors */
+  text-align: left;
+  padding: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Success Message Styling */
+.contact .php-email-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #149ddd; /* Matches theme's primary color */
+  text-align: center;
+  padding: 15px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  animation: slide-in 0.5s ease-out; /* Smooth sliding animation */
+}
+
+/* Add Success Icon Styling */
+.contact .php-email-form .sent-message i {
+  font-size: 20px;
+  margin-right: 10px;
+  color: #fff;
+}
+
+/* Animations */
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .contact .php-email-form .form-group {
   margin-bottom: 15px;
@@ -1248,7 +1325,7 @@ input{
 
 .skills .section-title h2 {
   font-size: 2rem;
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 20px;
   color: #2c3e50; /* Dark text for emphasis */
 }
@@ -1305,7 +1382,7 @@ input{
 }
 
 .resume .section-title h2 {
-  text-align: center;
+  /* text-align: center; */
   font-size: 2rem;
   color: #2c3e50;
   margin-bottom: 40px;
