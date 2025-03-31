@@ -335,7 +335,7 @@ footer .version {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 40px 0;
   overflow: hidden;
 }
 
@@ -629,6 +629,7 @@ form{
   transition: all ease-in-out 0.3s;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .portfolio .portfolio-wrap .portfolio-links a {
@@ -729,56 +730,67 @@ form{
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
-.services .icon-box {
-  margin-bottom: 20px;
+/* ======= Services Section Enhancements ======= */
+
+/* Container Styles for Icon Boxes */
+.icon-box {
+  background: #f9f9f9; /* Light background for better contrast */
+  /* padding: 0px; */
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adds a smooth animation */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 15px 0; /*Vertical spacing between rows*/
 }
 
-.services .icon {
-  float: left;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
-  background: #149ddd;
-  border-radius: 50%;
-  transition: 0.5s;
-  border: 1px solid #149ddd;
+/* Add horizontal spacing between columns */
+@media (min-width: 768px) {
+  .icon-box {
+    margin: 15px 10px; /* Horizontal spacing on larger screens */
+  }
 }
 
-.services .icon i {
-  color: #fff;
-  font-size: 24px;
-  line-height: 0;
+/* Hover Effects for Services */
+.icon-box:hover {
+  transform: translateY(-10px); /* Subtle hover effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+  background: #ffffff; /* Slightly brighter background on hover */
 }
 
-.services .icon-box:hover .icon {
-  background: #fff;
+/* Icon Styling */
+.icon-box .icon {
+  font-size: 48px;
+  color: #149ddd; /* Blue accent for icons */
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
 }
 
-.services .icon-box:hover .icon i {
-  color: #149ddd;
+.icon-box:hover .icon {
+  color: #0f87c1; /* Darker blue on hover */
 }
 
-.services .title {
-  margin-left: 80px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  font-size: 18px;
+/* Title Styling */
+.icon-box .title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
 }
 
-.services .title a {
-  color: #343a40;
+.icon-box:hover .title {
+  color: #149ddd; /* Highlight title on hover */
 }
 
-.services .title a:hover {
-  color: #149ddd;
-}
-
-.services .description {
-  margin-left: 80px;
-  line-height: 24px;
+/* Description Styling */
+.icon-box .description {
   font-size: 14px;
+  color: #666666;
+  transition: color 0.3s ease;
+}
+
+.icon-box:hover .description {
+  color: #333333; /* Darker text on hover */
 }
 
 /*--------------------------------------------------------------
@@ -1148,4 +1160,500 @@ input{
     width: auto;
     padding-right: 20px 15px;
   }
+}
+
+.portfolio-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between portfolio items */
+  justify-content: center; /* Center items in the row */
+}
+
+.portfolio-item {
+  flex: 1 1 calc(33.333% - 20px); /* Responsive: 3 items per row */
+  max-width: calc(33.333% - 20px);
+  height: 350px; /* Fixed height for all items */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio-item {
+    flex: 1 1 calc(50% - 20px); /* 2 items per row on tablets */
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .portfolio-item {
+    flex: 1 1 100%; /* 1 item per row on small screens */
+    max-width: 100%;
+  }
+}
+
+.portfolio-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for aesthetic */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #f9f9f9; /* Light background for consistency */
+}
+
+.portfolio-wrap img,
+.portfolio-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Scale content without distortion */
+  border-radius: 10px; /* Match parent border radius */
+}
+
+ /* .portfolio-links {
+  /* position: absolute; */
+  /* bottom: 10px; */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* gap: 15px; Space between icons */
+/*}  */
+
+/* .portfolio-links a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #3498db;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.portfolio-links a:hover {
+  background: #2c3e50;
+  transform: scale(1.1);
+} */
+/* Skills Section Styling */
+.skills {
+  padding: 60px 0;
+  background-color: #f8f9fa; /* Light background */
+}
+
+.skills .section-title h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50; /* Dark text for emphasis */
+}
+
+.skills .skills-content {
+  margin-top: 20px;
+}
+
+.skills .skills-content h4 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db; /* Add a bottom border for styling */
+  padding-bottom: 5px;
+}
+
+.skills .icon-skill {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.skills .icon-skill:hover {
+  background-color: #eaf3fa; /* Light hover effect */
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.skills .icon-skill i {
+  font-size: 1.8rem;
+  color: #3498db; /* Icon color */
+  margin-right: 10px;
+}
+
+.skills .icon-skill:hover i {
+  color: #007bff; /* Change icon color on hover */
+}
+
+.skills .icon-skill:nth-child(odd) {
+  background-color: #f9f9f9; /* Subtle alternating row background */
+}
+
+
+/* Container & Section Defaults */
+.resume {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.resume .section-title h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 40px;
+}
+
+/* Timeline Block */
+.timeline-block {
+  margin-bottom: 50px;
+}
+
+/* Timeline Header */
+.timeline-header h3 {
+  font-size: 1.8rem;
+  color: #3498db;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+/* Timeline Container */
+.timeline {
+  position: relative;
+  margin: 0;
+  padding-left: 40px;
+  border-left: 2px solid #3498db;
+}
+
+/* Timeline Item */
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* Marker (Dot) */
+.timeline-marker {
+  position: absolute;
+  left: -11px;
+  width: 22px;
+  height: 22px;
+  background: #3498db;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #3498db;
+  top: 0;
+}
+
+/* Timeline Content */
+.timeline-content {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Date, Title & Paragraphs */
+.timeline-content .date {
+  font-size: 0.9rem;
+  color: #666;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.timeline-content h4 {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.timeline-content p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* List Styling */
+.timeline-content ul {
+  margin: 10px 0 0 20px;
+}
+
+.timeline-content ul li {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 5px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 20px;
+    border-left-width: 1px;
+  }
+  .timeline-marker {
+    left: -12px;
+    width: 18px;
+    height: 18px;
+  }
+  .timeline-header h3 {
+    font-size: 1.6rem;
+  }
+  .timeline-content h4 {
+    font-size: 1.2rem;
+  }
+}
+.timeline-marker {
+  z-index: 2; /* Ensures the marker sits above other elements */
+}
+
+.timeline-content {
+  position: relative; /* This allows the marker to overlay without interference */
+  z-index: 1;
+}
+
+/*------------------------------------------------------------------
+   Enhanced Play Video Button Style
+-------------------------------------------------------------------*/
+
+/* Position and Hide the Overlay Until Hover */
+.portfolio-item.filter-videos .portfolio-links {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Show overlay on hover */
+.portfolio-item.filter-videos .portfolio-wrap:hover .portfolio-links {
+  opacity: 1;
+}
+
+/* New Play Button Design */
+.portfolio-item.filter-videos .portfolio-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;           /* Increased size for better visibility */
+  height: 70px;          /* Same as width for a perfect circle */
+  background: rgba(20, 157, 221, 0.85); /* Primary color with opacity */
+  color: #fff;
+  border-radius: 50%;
+  font-size: 32px;       /* Bigger icon size */
+  text-decoration: none;
+  transition: transform 0.3s ease, background 0.3s ease;
+  position: relative;
+}
+
+/* Pulse animation for attracting attention */
+@keyframes playPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(20, 157, 221, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(20, 157, 221, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(20, 157, 221, 0);
+  }
+}
+
+.portfolio-item.filter-videos .portfolio-links a {
+  animation: playPulse 2s infinite;
+}
+
+/* Hover state for the play button */
+.portfolio-item.filter-videos .portfolio-links a:hover {
+  transform: scale(1.15);
+  background: rgba(20, 157, 221, 0.95);
+}
+
+/* Container for the client website cards */
+.client-websites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+/* Each flip card: */
+.client-website-card {
+  width: 300px;
+  perspective: 1000px; /* Enables 3D flip effect */
+}
+
+/* Inner container for flip animation */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+}
+
+/* Flip the card on hover (desktop) or tap (on mobile, use JavaScript to toggle a class) */
+.client-website-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front and back faces of the card */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Front side: show the website screenshot */
+.card-front {
+  background: #fff;
+}
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay on the front image for website title and URL */
+.card-front .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.7));
+  color: #fff;
+  text-align: left;
+}
+.card-front .overlay h3 {
+  margin: 0;
+  font-size: 20px;
+}
+.card-front .overlay p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+/* Back side: details and action buttons */
+.card-back {
+  background: #fff;
+  transform: rotateY(180deg);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card-back h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+.card-back p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Buttons on back side */
+.card-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.card-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: #149ddd;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+.card-buttons .btn:hover {
+  background: #0f87c1;
+}
+
+/* Responsive adjustments (if needed) */
+@media (max-width: 576px) {
+  .client-website-card {
+    width: 90%;
+  }
+}
+
+/* Portfolio Grid */
+.portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px; /* Consistent spacing between items */
+}
+
+/* Websites Section Styling */
+.client-website-card {
+  perspective: 1000px;
+  width: 100%;
+}
+
+.client-website-card .card-inner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.client-website-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.client-website-card .card-front,
+.client-website-card .card-back {
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.client-website-card .card-front {
+  background-color: #fff;
+}
+
+.client-website-card .card-back {
+  background-color: #f8f9fa;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+}
+
+.icon-box.hovered {
+  transform: scale(1.05); /* Slightly enlarge the box */
+  transition: transform 0.3s ease;
 }
