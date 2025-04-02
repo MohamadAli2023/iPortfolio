@@ -1252,19 +1252,45 @@ input{
 .portfolio-item {
   flex: 1 1 calc(33.333% - 20px); /* Responsive: 3 items per row */
   max-width: calc(33.333% - 20px);
-  height: 350px; /* Fixed height for all items */
+  height: auto; /* Let the height adapt dynamically */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch; /* Stretch content to fill the height */
   box-sizing: border-box; /* Prevents layout issues */
+}
+
+/* Ensure Consistent Heights for Content */
+.portfolio-wrap {
+  width: 100%;
+  height: 100%; /* Set full height to match parent container */
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for aesthetic */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: flex-start;
+  background-color: #f9f9f9; /* Light background for consistency */
+}
+
+/* Portfolio Media (Images/Videos) */
+.portfolio-wrap img,
+.portfolio-wrap video {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Prevent distortion */
+  border-radius: 10px 10px 0 0; /* Match parent border radius for top edges */
+  flex-grow: 1; /* Ensure media fills the available space */
 }
 
 /* Tablet View (768px and smaller) */
 @media screen and (max-width: 768px) {
   .portfolio-item {
     flex: 1 1 calc(50% - 20px); /* Adjust to 2 items per row */
-    max-width: calc(50% - 20px); /* Ensures proper scaling */
-    height: auto; /* Let height adjust naturally */
+    max-width: calc(50% - 20px);
+    height: auto; /* Maintain dynamic height */
+  }
+
+  .portfolio-wrap {
+    height: auto; /* Adjust height naturally for smaller screens */
   }
 }
 
@@ -1272,33 +1298,17 @@ input{
 @media screen and (max-width: 576px) {
   .portfolio-item {
     flex: 1 1 100%; /* Single item per row */
-    max-width: 100%; /* Take full width */
-    height: auto; /* Prevent fixed height issues */
-    margin-bottom: 15px; /* Add space between stacked items */
+    max-width: 100%; /* Full-width items */
+    margin-bottom: 15px; /* Add spacing between stacked items */
   }
 }
 
-/* Portfolio Wrap */
-.portfolio-wrap {
-  width: 100%;
-  height: auto; /* Automatically adjusts based on content */
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for aesthetic */
+/* Equalize Heights for All Items */
+.portfolio-item > .portfolio-wrap {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background-color: #f9f9f9; /* Light background for consistency */
-}
-
-/* Portfolio Images and Videos */
-.portfolio-wrap img,
-.portfolio-wrap video {
-  width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* Scales without distortion */
-  border-radius: 10px; /* Matches parent border radius */
+  flex-direction: column;
+  justify-content: space-between; /* Ensure content spacing is consistent */
+  height: 100%; /* Fill parent container */
 }
 
  /* .portfolio-links {
