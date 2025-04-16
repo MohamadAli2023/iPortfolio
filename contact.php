@@ -1,96 +1,107 @@
 <?php
+// Initialize response array
+$response = array('status' => '', 'message' => '');
+
+// Function to sanitize input
+function sanitize_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $to = "Hassanmhamad777@gmail.com"; // Enter your email address here
-    $from_name = $_POST['name'];
-    $from_email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
+    // Basic spam protection - check if the request is coming too quickly
+    session_start();
+    $now = time();
+    if (isset($_SESSION['last_submit_time']) && 
+        ($now - $_SESSION['last_submit_time']) < 15) { // 15 seconds cooldown
+        $response['status'] = 'error';
+        $response['message'] = 'Please wait a few seconds before submitting again.';
+        echo json_encode($response);
+        exit;
+    }
     
-    $headers = "From: $from_name <$from_email>" . "\r\n" .
-               "Reply-To: $from_email" . "\r\n" .
-               "MIME-Version: 1.0" . "\r\n" .
-               "Content-type: text/html; charset=UTF-8" . "\r\n";
-
-    if (mail($to, $subject, $message, $headers)) {
-        echo "success";
-    } else {
-        echo "error";
+    // Validate and sanitize input
+    $name = isset($_POST['name']) ? sanitize_input($_POST['name']) : '';
+    $email = isset($_POST['email']) ? sanitize_input($_POST['email']) : '';
+    $subject = isset($_POST['subject']) ? sanitize_input($_POST['subject']) : '';
+    $message = isset($_POST['message']) ? sanitize_input($_POST['message']) : '';
+    
+    // Validate required fields
+    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+        $response['status'] = 'error';
+        $response['message'] = 'All fields are required.';
+        echo json_encode($response);
+        exit;
     }
-}
-
-/*
-class ContactFormHandler {
-    public $to;
-    public $from_name;
-    public $from_email;
-    public $subject;
-    public $message;
-    public $headers;
-
-    public function __construct() {
-        $this->headers = "MIME-Version: 1.0" . "\r\n";
-        $this->headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    
+    // Validate email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $response['status'] = 'error';
+        $response['message'] = 'Invalid email format.';
+        echo json_encode($response);
+        exit;
     }
-
-    public function add_message($content, $label, $indent = 0) {
-        $this->message .= str_repeat("&nbsp;", $indent * 4) . "<strong>{$label}:</strong> " . nl2br($content) . "<br>";
-    }
-
-    public function send() {
-        $message = "<html><body>{$this->message}</body></html>";
-
-        return mail($this->to, $this->subject, $message, $this->headers);
-    }
-}
-?>
-
-
-<?php
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Set recipient email address
+    
+    // Set recipient email
     $to = "Hassanmhamad777@gmail.com";
-
-    // Set subject
-    $subject = $_POST['subject'];
-
-    // Get form data
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
-
-    // Construct email headers
-    $headers = "From: $name <$email>" . "\r\n";
-    $headers .= "Reply-To: $email" . "\r\n";
-    $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-
-    // Construct email message
+    
+    // Create email headers
+    $headers = "From: " . $name . " <" . $email . ">\r\n";
+    $headers .= "Reply-To: " . $email . "\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    
+    // Create HTML message
     $email_message = "
+    <!DOCTYPE html>
     <html>
     <head>
-    <title>$subject</title>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; }
+            .container { padding: 20px; }
+            .field { margin-bottom: 15px; }
+            .label { font-weight: bold; }
+        </style>
     </head>
     <body>
-    <h2>Contact Form Submission</h2>
-    <p><strong>Name:</strong> $name</p>
-    <p><strong>Email:</strong> $email</p>
-    <p><strong>Message:</strong> $message</p>
+        <div class='container'>
+            <h2>New Contact Form Submission</h2>
+            <div class='field'>
+                <span class='label'>Name:</span> " . $name . "
+            </div>
+            <div class='field'>
+                <span class='label'>Email:</span> " . $email . "
+            </div>
+            <div class='field'>
+                <span class='label'>Subject:</span> " . $subject . "
+            </div>
+            <div class='field'>
+                <span class='label'>Message:</span><br>
+                " . nl2br($message) . "
+            </div>
+        </div>
     </body>
-    </html>
-    ";
-
+    </html>";
+    
     // Send email
     if (mail($to, $subject, $email_message, $headers)) {
-        // Email sent successfully
-        echo "Thank you for your message. We will get back to you soon!";
+        $_SESSION['last_submit_time'] = $now; // Record submission time
+        $response['status'] = 'success';
+        $response['message'] = 'Thank you for your message. We will get back to you soon!';
     } else {
-        // Failed to send email
-        echo "Oops! Something went wrong and we couldn't send your message.";
+        $response['status'] = 'error';
+        $response['message'] = 'Sorry, there was an error sending your message. Please try again later.';
     }
+    
+    echo json_encode($response);
+    exit;
 } else {
-    // Form not submitted, redirect to error page or display an error message
-    echo "Form submission method not allowed.";
+    $response['status'] = 'error';
+    $response['message'] = 'Invalid request method.';
+    echo json_encode($response);
+    exit;
 }
-*/
 ?>
-
