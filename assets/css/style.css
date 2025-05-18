@@ -1754,3 +1754,28 @@ input{
   transform: scale(1.05); /* Slightly enlarge the box */
   transition: transform 0.3s ease;
 }
+.resume-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, #149ddd 0%, #37b3ed 100%);
+  border-radius: 30px;
+  box-shadow: 0 2px 8px rgba(20,157,221,0.08);
+  text-decoration: none;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  margin: 0 auto;
+}
+.resume-download-link:hover {
+  background: linear-gradient(90deg, #37b3ed 0%, #149ddd 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px rgba(20,157,221,0.15);
+  text-decoration: none;
+}
+.resume-download-link i {
+  font-size: 1.3em;
+}
